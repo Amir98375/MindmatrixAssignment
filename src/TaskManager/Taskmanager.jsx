@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../App.css'
 import Swal from 'sweetalert2';
+import { MdDelete } from "react-icons/md";
 
 function TaskManager() {
   const [tasks, setTasks] = useState([]);
@@ -46,6 +47,7 @@ function TaskManager() {
           placeholder="Assigned To"
           value={assignee}
           onChange={e => setAssignee(e.target.value)}
+          required={true}
         /> 
 
  
@@ -59,6 +61,7 @@ function TaskManager() {
           placeholder="Task"
           value={newTask}
           onChange={e => setNewTask(e.target.value)}
+          required={true}
         />
   
       </div>
@@ -70,7 +73,13 @@ function TaskManager() {
           {tasks.map(task => (
             <li key={task.id}>
               {task.title} - Assigned to: {task.assignee}
-              <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+              <button style={{
+          
+                background:'white',
+                borderColor:'black',
+                borderRadius:'10px',
+              
+              }} onClick={() => handleDeleteTask(task.id)}><MdDelete color='blue' /></button>
             </li>
           ))}
         </ul>
