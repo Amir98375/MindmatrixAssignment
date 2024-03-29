@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../App.css'
 import Swal from 'sweetalert2';
 import { MdDelete } from "react-icons/md";
+import { ReactUtilityTable } from 'react-utility-table';
 
 function TaskManager() {
   const [tasks, setTasks] = useState([]);
@@ -68,7 +69,7 @@ function TaskManager() {
       <br></br>
       <button onClick={handleAddTask} className='button'>Add Task</button>
       <div>
-        <h2>Tasks:</h2>
+        {/* <h2>Tasks:</h2>
         <ul>
           {tasks.map(task => (
             <li key={task.id}>
@@ -82,8 +83,46 @@ function TaskManager() {
               }} onClick={() => handleDeleteTask(task.id)}><MdDelete color='blue' /></button>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
+      <ReactUtilityTable
+        style={{ width: "100%" }}
+        title={"All Data"}
+        columns={[
+          {
+            title: "Task",
+            field: "title",
+          },
+          {
+            title: "Assigned To",
+            field: "assignee",
+          },
+       
+        ]}
+        options={{
+          headerStyle: {
+            backgroundColor: "#14a4de",
+            color: "#FFF",
+            whiteSpace: "nowrap",
+            padding: 0,
+          },
+        }}
+        data={tasks}
+        actions={
+          [
+            // {
+            //     icon: 'delete',
+            //     onClick: (evt, rowData) =>
+            //         dialogOpen(rowData)
+            // }
+            // {
+            //     icon: () => <Exportexcel columns={tableColumn} excelName={props.t("list_of_rejected_customer")} excelData={tableData} />,
+            //     tooltip: props.t("download_excel"),
+            //     isFreeAction: true,
+            // }
+          ]
+        }
+      />
     </div>
   );
 }
