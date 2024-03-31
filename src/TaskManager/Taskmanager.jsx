@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import '../App.css'
-import Swal from 'sweetalert2';
+import React, { useEffect, useState } from "react";
+import "../App.css";
+import Swal from "sweetalert2";
 import { MdDelete } from "react-icons/md";
-import { ReactUtilityTable } from 'react-utility-table';
+import { ReactUtilityTable } from "react-utility-table";
 
 function TaskManager() {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
-  const [assignee, setAssignee] = useState('');
-  const [todoList,setTodoList]=useState({})
-  const [selectedUser,setSelectedUser]=useState('')
+  const [newTask, setNewTask] = useState("");
+  const [assignee, setAssignee] = useState("");
+  const [todoList, setTodoList] = useState({});
+  const [selectedUser, setSelectedUser] = useState("");
   const handleAddTask = () => {
-    if (assignee && newTask.trim() !== '') {
-      setTodoList(prevTodoList => {
+    if (assignee && newTask.trim() !== "") {
+      setTodoList((prevTodoList) => {
         const updatedTodoList = { ...prevTodoList };
         if (updatedTodoList.hasOwnProperty(assignee)) {
           updatedTodoList[assignee] = updatedTodoList[assignee].concat(newTask);
@@ -21,19 +21,19 @@ function TaskManager() {
         }
         return updatedTodoList;
       });
-      setNewTask('');
-      setAssignee('');
+      setNewTask("");
+      setAssignee("");
     } else {
       Swal.fire({
         text: "Please enter both assignee name and task",
-        icon: "error"
+        icon: "error",
       });
     }
   };
-  
+
   // const handleAddTask = () => {
   //   if(assignee){
-      
+
   //     setTodoList(prevTodoList => {
   //       const updatedTodoList = { ...prevTodoList };
   //       if (updatedTodoList.hasOwnProperty(assignee)) {
@@ -45,7 +45,7 @@ function TaskManager() {
   //     });
   //               setNewTask('');
   //           setAssignee('');
-      
+
   //       // if (newTask.trim() !== '') {
   //       //     setTasks([
   //       //       ...tasks,
@@ -67,61 +67,74 @@ function TaskManager() {
   //   }
 
   // };
-  console.log(todoList,'todoList')
+  console.log(todoList, "todoList");
   useEffect(() => {
+    debugger;
     if (selectedUser) {
       const filteredTasks = todoList[selectedUser] || [];
-      setTasks(filteredTasks);
+      let myarr = filteredTasks.map((el) => {
+        return {
+          title: el,
+          assignee: selectedUser,
+        };
+      });
+      setTasks(myarr);
     } else {
       setTasks([]);
     }
   }, [selectedUser, todoList]);
-function setDataToTable(){
-  let filterArr=todoList.filter()
-}
-  const handleDeleteTask = id => {
-    setTasks(tasks.filter(task => task.id !== id));
+  function setDataToTable() {
+    let filterArr = todoList.filter();
+  }
+  const handleDeleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
   };
-console.log(tasks,"my task filtered")
+  console.log(tasks, "my task filtered");
   return (
     <div>
       <h1>Task Manager</h1>
       <div>
- 
-      <input
-        className='city-search'
+        <input
+          className="city-search"
           type="text"
           placeholder="Assigned To"
           value={assignee}
-          onChange={e => setAssignee(e.target.value)}
+          onChange={(e) => setAssignee(e.target.value)}
           required={true}
-        /> 
-
- 
-     
+        />
       </div>
       <br></br>
       <div>
-      <input
-        className='city-search'
+        <input
+          className="city-search"
           type="text"
           placeholder="Task"
           value={newTask}
-          onChange={e => setNewTask(e.target.value)}
+          onChange={(e) => setNewTask(e.target.value)}
           required={true}
+          oninput="handleInput(this)"
         />
-  
+        
       </div>
       <br></br>
-      <button onClick={handleAddTask} className='button'>Add Task</button>
-      <br /><br />
-      <select value={selectedUser} onChange={e => setSelectedUser(e.target.value)}>
-          <option value="">Select Assignee</option>
-          {Object.keys(todoList).map((user, index) => (
-            <option key={index} value={user}>{user}</option>
-          ))}
-          {/* Add more options as needed */}
-        </select>
+      <button onClick={handleAddTask} className="button">
+        Add Task
+      </button>
+      <br />
+      <br />
+      <select
+        value={selectedUser}
+        onChange={(e) => setSelectedUser(e.target.value)}
+        className="SelectTag"
+      >
+        <option value="">Select Assignee</option>
+        {Object.keys(todoList).map((user, index) => (
+          <option key={index} value={user}>
+            {user}
+          </option>
+        ))}
+        {/* Add more options as needed */}
+      </select>
 
       <div>
         {/* <h2>Tasks:</h2>
@@ -152,7 +165,6 @@ console.log(tasks,"my task filtered")
             title: "Assigned To",
             field: "assignee",
           },
-       
         ]}
         options={{
           headerStyle: {
@@ -164,7 +176,7 @@ console.log(tasks,"my task filtered")
         }}
         // data={tasks}
         // data={tasks.map((task, index) => ({ task, assignee: selectedUser }))}
-        data={tasks.map((task, index) => ({ task, assignee: selectedUser }))}
+        data={tasks}
         // data={filteredTasks.map((task, index) => ({ task, assignee }))}
         actions={
           [

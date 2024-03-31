@@ -19,12 +19,13 @@ html {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 600px;
+	width: 80%;
 	min-height: 440px;
 	background-color:white;
 	text-align: center;
-	margin: 128px auto;
-	border-radius: 10px;
+	margin:  auto;
+	padding: 20px;
+	border-radius: 10px 10px 0px 0px;
 	padding-bottom: 32px;
   box-shadow: inset;
 }
@@ -35,7 +36,7 @@ html {
 	box-sizing: border-box;
 	border: 2px solid black;
 	outline: none;
-	border-radius: 20px;
+	border-radius: 30px 0px 30px 0px;
 	font-size: 16px;
 	background-color:white;
 	background-position: 10px 12px;
@@ -67,6 +68,22 @@ html {
 	font-weight: 700;
 	color: red;
 	text-align: center;
+}
+.SelectTag{
+	width: 100%;
+	max-width: 400px;
+	box-sizing: border-box;
+	border: 2px solid black;
+	outline: none;
+	
+	font-size: 16px;
+	background-color:white;
+	background-position: 10px 12px;
+	background-repeat: no-repeat;
+	padding: 12px 40px 12px 40px;
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+	color: black;
 }
 
 .deg {
@@ -114,14 +131,23 @@ html {
 	
 	height: 40px;
 	width: 150px;
-	border: 2px solid black;
-	background-color: black;
-	border-radius: 20px;
-	
+	border-radius: 0px 40px 5px 40px;
 	-webkit-transition: width 0.4s ease-in-out;
-	transition: width 0.4s ease-in-out;
-	color: white;
+	transition: width 0.6s ease-in-out;
+     color: white;
+	background: linear-gradient(to left, hwb(239 5% 37% / 0.938) 50%, #cf0c16 50%);
+	background-size: 200% 100%;
+	background-position: right bottom;
+	transition: background-position 0.7s ease;
+	cursor: pointer;
+	outline: none;
+	border: none;
+
 }
+.button:hover {
+	background-position: left bottom;
+	
+  }
 .containerButton{
 	display: flex;
 	justify-content: space-evenly;
@@ -130,13 +156,72 @@ html {
 }
  
 .containerButton>button{
-	width: 40%;
+	width: 150px;
 	height: 40px;
 	border: 2px solid black;
 	background-color: black;
-	border-radius: 20px;
+	border-radius: 0px 40px 5px 40px;
 	/* padding: 12px 40px 12px 40px; */
 	-webkit-transition: width 0.4s ease-in-out;
 	transition: width 0.4s ease-in-out;
 	color: white;
 }
+
+.imageContainer{
+	min-height: 300px;
+	width: 20rem;
+	margin-top: 20px;
+	border-radius: 0px 53px 0px 40px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+	transition: transform 0.5s ease
+}
+.myImage{
+	
+	width: 100%;
+	border-radius: 0px 53px 0px 40px;
+height: 50%;
+
+}
+.imageContainer:hover  {
+	transform: scale(1.05); 
+	/* Zoom effect on hover */
+  }
+  .container{
+	display: flex;
+	width: 100%;
+	gap: 10px;
+	flex-wrap: wrap;
+  }
+  .heading{
+	color: red;
+	font-family: 'Times New Roman', Times, serif;
+	text-align: left;
+  }
+
+  .aboutTitle  {
+	color: grey;
+	font-family: 'Times New Roman', Times, serif;
+	text-align: left;
+  }
+
+  .buttonClass{
+	margin: 3px 5px 0px 3px;
+	display: flex;
+	justify-content: space-between;
+	
+
+  }
+  .buttonClass button{
+	width: 5rem;
+	height: 2rem;
+	background-color: black;
+	border-radius: 0px 40px 5px 40px;
+	/* padding: 12px 40px 12px 40px; */
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+	color: white;
+  }
+
+  .imageContainer:hover .buttonClass  button:first-child {
+	background-color: red; /* Button color on hover */
+  }

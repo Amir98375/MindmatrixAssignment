@@ -71,7 +71,7 @@ export const WeatherApp=()=> {
     };
  
     return (
-        <div className="App">
+        <div className='App'>
             <h1 className="app-name">
                 My Weather App
             </h1>
